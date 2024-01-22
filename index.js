@@ -42,7 +42,7 @@ class FlashClass {
         }
     }
     get message () {
-        this.clearCookie();
+        this.clearCookie(this._cookieConfig);
         return {...this._message};
     }
 
