@@ -1,5 +1,5 @@
 {
-  "name": "flash",
+  "name": "flash_express_cookie",
   "version": "1.0.0",
   "description": "This is a simple flash message middleware for express and ejs",
   "main": "index.js",
