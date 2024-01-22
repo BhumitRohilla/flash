@@ -6,7 +6,7 @@ class FlashClass {
      * @param {{cookieName: string, cookieConfig: {path: string, domain: string, httpOnly: boolean}}} config 
      */
     constructor (req, res, config) {
-        this._message = req?.cookies?.message ?? '';
+        this._message = req?.cookies?.message ?? {};
         this._isClear = false;
         this._req = req;
         this._res = res;
@@ -15,8 +15,11 @@ class FlashClass {
         if (this._message) {
             try {
                 this._message = JSON.parse(req.cookies[this._cokieName]);
+                if (!this._message) {
+                    this._message = {};
+                }
             } catch (error) {
-                this._message = '';
+                this._message = {};
             }
         }
         this.clearCookie = ((req) => {
@@ -28,12 +31,15 @@ class FlashClass {
                 this._res.clearCookie('message',this._cookieConfig);
             }
         })();
-    }
-    insert(type, message) {
-        if(req._flash?.[type]) {
-            req._flash[type].push(message);
+
+        this.insert = (type, message) => {
+            if(this._message[type]) {
+                this._message[type].push(message);
+            } else {
+                this._message[type] = [message];
+            }
+            this._res.cookie(this._cokieName, JSON.stringify(this._message),this._cookieConfig);
         }
-        this._req.cookie(this._cokieName, this._cookieConfig);
     }
     get message () {
         this.clearCookie();
