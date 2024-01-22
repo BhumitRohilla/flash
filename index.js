@@ -62,7 +62,9 @@ class FlashClass {
  * @returns 
  */
 module.export = (config) => {
-    console.log(config);
+    if (!config.cookieConfig || !config.cookieName)  {
+        throw new Error('Config is not valid');
+    }
     return (req, res, next) => {
         req.session = req?.session ?? {};
         req._flash = {};
