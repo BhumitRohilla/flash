@@ -28,7 +28,7 @@ class FlashClass {
                     return ;
                 }
                 this._isClear = true;
-                this._res.clearCookie('message',this._cookieConfig);
+                this._res.clearCookie(this._cokieName,this._cookieConfig);
             }
         })();
 
@@ -42,7 +42,7 @@ class FlashClass {
         }
     }
     get message () {
-        this.clearCookie(this._cookieConfig);
+        this.clearCookie();
         return {...this._message};
     }
 
