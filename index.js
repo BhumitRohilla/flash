@@ -61,7 +61,7 @@ class FlashClass {
  * @param {{cookieName: string, cookieConfig: {path: string, domain: string, httpOnly: boolean}}} config 
  * @returns 
  */
-module.export = (config) => {
+module.exports = (config) => {
     if (!config.cookieConfig || !config.cookieName)  {
         throw new Error('Config is not valid');
     }
