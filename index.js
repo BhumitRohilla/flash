@@ -72,5 +72,6 @@ module.export = (config) => {
         req._flash = flash;
         req.flash = flash.insert;
         res.locals.messages = flash;
+        next();
     }
 }
